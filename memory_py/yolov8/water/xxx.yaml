@@ -1,0 +1,6 @@
+path: D:\bysq\memory_py\yolov8\water
+train: images/train
+val: images/val
+test: images/test
+nc: 1
+names: ["water"]

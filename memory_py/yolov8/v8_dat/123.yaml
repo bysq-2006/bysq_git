@@ -1,0 +1,7 @@
+# 数据集路径
+train: c:\bysq\v8_dat\train
+val: c:\bysq\v8_dat\val
+
+# 类别设置
+nc: 1  # 类别数量
+names: ['Orange_Pi']  # 类别名称列表
