@@ -20,21 +20,21 @@ int height(avlnode *node){//返回高度，如果比无孩节点还低，则为-
         return node->height;
 }
 
-bool insert(avlnode *node,int number){
+avlnode insert(avlnode *node,int number){
     if(node->left == NULL && node->right == NULL){
-        if(node->element == number)//如果number == node的值，那么直接结束
-            return true;
-        avlnode *new_node = (avlnode*)malloc(sizeof(avlnode));//创造新节点
-        if(new_node == NULL){
+        avlnode *new_node = (avlnode*)malloc(sizeof(avlnode));//创造新节点 和 如果number == node的值，那么直接结束
+        if(new_node == NULL || node->element == number){
             cout << "This node not be craety." << endl;
-            return false;
+            return;
         }
         new_node->left = new_node->right = NULL;//new_node初始化
         new_node->height = number;new_node->height = 0;
+    }
+    else if(number < node->element){
         
     }
     node->height = max(height(node->left),height(node->right)) + 1;//node高度加一
-    return true;
+    // return new_node;
 }
 
 int main(){
