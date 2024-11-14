@@ -31,14 +31,7 @@ bool insert(avlnode *node,int number){
         }
         new_node->left = new_node->right = NULL;//new_node初始化
         new_node->height = number;new_node->height = 0;
-        if(number < node->element){//判断左还是右
-            node->left = new_node;
-            return true;
-        }
-        else{
-            node->right = new_node;
-            return true;
-        }
+        
     }
     node->height = max(height(node->left),height(node->right)) + 1;//node高度加一
     return true;
