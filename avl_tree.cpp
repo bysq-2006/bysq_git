@@ -37,6 +37,16 @@ avlnode* rotate_one_right(avlnode* node){//右旋转，返回node的左孩（新
     left_node->height = max(height(left_node->left),height(left_node->right)) + 1;
     return left_node;
 }
+
+avlnode* rotate_two_left(avlnode* node){//右双旋转，返回node的左孩的右孩（新节点）
+    node->left = rotate_one_left(node->left);
+    return rotate_one_right(node);
+}
+
+avlnode* rotate_two_right(avlnode* node){//右双旋转，返回node的左孩的左孩（新节点）
+    node->right = rotate_one_right(node->right);
+    return rotate_one_left(node);
+}
 //如果旋转了，父节点的高都会变，不过（node高度加一）那个地方的代码会改变所有相关父节点的高
  
 avlnode* insert(avlnode *node,int number){//使用方法：node = insert(node,number);
@@ -55,10 +65,21 @@ avlnode* insert(avlnode *node,int number){//使用方法：node = insert(node,nu
             if(number < node->left->element){
                 node = rotate_one_right(node);//将这个节点进行右单旋转然后返回原来节点的左孩
             }
+            else{
+                node = rotate_two_left(node);
+            }
         }
     }
     else if(number > node->element){// 右
         node->right = insert(node->right,number);
+        if(height(node->right) - height(node->left) == 2){
+            if(number > node->right->element){
+                node = rotate_one_left(node);//将这个节点进行左单旋转然后返回原来节点的右孩
+            }
+            else{
+                node = rotate_two_right(node);
+            }
+        }
     }
     node->height = max(height(node->left),height(node->right)) + 1;//node高度加一
     return node;

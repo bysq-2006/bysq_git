@@ -1,7 +1,6 @@
 import asyncio
 import time
 from nonebot import on_command, on_keyword
-from nonebot.adapters.onebot.v11 import Bot
 from nonebot.adapters.onebot.v11 import Bot, Event, Message
 from datetime import datetime #24小时
 from nonebot.adapters import MessageTemplate
