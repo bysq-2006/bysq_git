@@ -20,21 +20,48 @@ int height(avlnode *node){//返回高度，如果比无孩节点还低，则为-
         return node->height;
 }
 
-avlnode insert(avlnode *node,int number){
+avlnode* rotate_one_left(avlnode* node){//左旋转，返回node的右孩（新节点）
+    avlnode* right_node = node->right;
+    node->right = right_node->left;
+    right_node->left = node;
+    node->height = max(height(node->left),height(node->right)) + 1;
+    right_node->height = max(height(right_node->left),height(right_node->right)) + 1;
+    return right_node;
+}
+
+avlnode* rotate_one_right(avlnode* node){//右旋转，返回node的左孩（新节点）
+    avlnode* left_node = node->left;
+    node->left = left_node->right;
+    left_node->right = node;
+    node->height = max(height(node->left),height(node->right)) + 1;
+    left_node->height = max(height(left_node->left),height(left_node->right)) + 1;
+    return left_node;
+}
+//如果旋转了，父节点的高都会变，不过（node高度加一）那个地方的代码会改变所有相关父节点的高
+ 
+avlnode* insert(avlnode *node,int number){//使用方法：node = insert(node,number);
     if(node->left == NULL && node->right == NULL){
-        avlnode *new_node = (avlnode*)malloc(sizeof(avlnode));//创造新节点 和 如果number == node的值，那么直接结束
-        if(new_node == NULL || node->element == number){
+        avlnode *node = (avlnode*)malloc(sizeof(avlnode));//创造新节点 和 如果number == node的值，那么直接结束
+        if(node == NULL || node->element == number){
             cout << "This node not be craety." << endl;
             return;
         }
-        new_node->left = new_node->right = NULL;//new_node初始化
-        new_node->height = number;new_node->height = 0;
+        node->left = node->right = NULL;//new_node初始化
+        node->element = number;node->height = 0;
     }
-    else if(number < node->element){
-        
+    else if(number < node->element){// 左
+        node->left = insert(node->left,number);
+        if(height(node->left) - height(node->right) == 2){
+            if(number < node->left->element){
+                node = rotate_one_right(node);//将这个节点进行右单旋转然后返回原来节点的左孩
+            }
+        }
+    }
+    else if(number > node->element){// 右
+        node->right = insert(node->right,number);
     }
     node->height = max(height(node->left),height(node->right)) + 1;//node高度加一
-    // return new_node;
+    return node;
 }
 
 int main(){
