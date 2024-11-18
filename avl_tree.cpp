@@ -50,14 +50,15 @@ avlnode* rotate_two_right(avlnode* node){//右双旋转，返回node的左孩的
 //如果旋转了，父节点的高都会变，不过（node高度加一）那个地方的代码会改变所有相关父节点的高
  
 avlnode* insert(avlnode *node,int number){//使用方法：node = insert(node,number);
-    if(node->left == NULL && node->right == NULL){
+    if(node == NULL){
         avlnode *node = (avlnode*)malloc(sizeof(avlnode));//创造新节点 和 如果number == node的值，那么直接结束
         if(node == NULL || node->element == number){
             cout << "This node not be craety." << endl;
-            return;
+            return NULL;
         }
         node->left = node->right = NULL;//new_node初始化
         node->element = number;node->height = 0;
+        return node;
     }
     else if(number < node->element){// 左
         node->left = insert(node->left,number);
@@ -85,6 +86,44 @@ avlnode* insert(avlnode *node,int number){//使用方法：node = insert(node,nu
     return node;
 }
 
+//---------------------------------------------------------------------------------------------------
+
+int find_element(avlnode* node,int number){//寻找一个数
+    if(node == NULL){
+        cout << "ERROR: The element not exist!" << endl;
+        return NULL;
+    }
+    else if(number < node->element){
+        return find_element(node->left,number);
+    }
+    else if(number > node->element){
+        return find_element(node->right,number);
+    }
+    else return number;
+}
+
+avlnode* make_empty_avltree(int element = 0){//用法：empty_tree = make_empty_avltree(可选值,默认0)
+    avlnode* tree = (avlnode*)malloc(sizeof(avlnode));
+    tree->element = element;
+    tree->left = tree->right = NULL;
+    tree->height = 0;
+    return tree;
+}
+
+void output_zhong(const avlnode* node){//中序遍历
+    if(node != NULL){
+        output_zhong(node->left);
+        cout << node->element;
+        output_zhong(node->right);
+    }
+}
+
 int main(){
+    avlnode* tree = make_empty_avltree();
+    tree = insert(tree,1);
+    tree = insert(tree,6);
+    tree = insert(tree,7);
+    tree = insert(tree,2);
+    output_zhong(tree);
     return 0;
 }
