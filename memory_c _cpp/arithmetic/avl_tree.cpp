@@ -88,7 +88,7 @@ avlnode* insert(avlnode *node,int number){//使用方法：node = insert(node,nu
 
 //---------------------------------------------------------------------------------------------------
 
-int find_element(avlnode* node,int number){//寻找一个数
+int find_element(avlnode* node,int number){//寻找一个数，如果成功则返回这个数，如果失败则返回NULL
     if(node == NULL){
         cout << "ERROR: The element not exist!" << endl;
         return NULL;
@@ -118,12 +118,16 @@ void output_zhong(const avlnode* node){//中序遍历
     }
 }
 
+avlnode* delete_node(avlnode* node,int n){//未完成
+
+}
+
 int main(){
     avlnode* tree = make_empty_avltree();
     tree = insert(tree,1);
     tree = insert(tree,6);
     tree = insert(tree,7);
-    tree = insert(tree,2);
+    tree = insert(tree,9);
     output_zhong(tree);
     return 0;
 }

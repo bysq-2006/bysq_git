@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
+
+int fa(int* a){
+    *a = 666;
+    return *a;
+}
+
 int main(){
-    cout << 45.4545e10;
+    int a = NULL;
+    int* p = &a;
+    cout << fa(p);
     return 0;
 }

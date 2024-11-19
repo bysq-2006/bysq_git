@@ -1,4 +1,8 @@
-sum:int = 0
-for i in range(5051,0,-1):
-    sum += i
-print(sum)
+num:int = int(input())
+i:int = 0
+
+while num > 0:
+    num //= 10
+    i += 1
+
+print(i)
