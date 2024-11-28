@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+#dao {/* h3 */
+    height: 50px;
+    color: rgb(255, 255, 255); /* 设置文本颜色 */
+    text-align: center; /* 文字居中 */
+    white-space: nowrap; /* 不允许文本换行 */
+}
+
+h3#dao {
+    font-size: 2em; /* 将字体大小设置为 2 倍默认大小 */
+    line-height: 1.5; /* 调整行高以增加内容间距 */
+}
+i#dao {
+    font-size: 1em; /* 字体大小 */
+    line-height: 1.5; /* 调整行高以增加内容间距 */
+    padding-left: 5px;
+    
+}
+
+.dao_:hover {
+    transform: scale(1.1); /* 鼠标悬停时放大 */
+    background-color: #da1b1b; /* 鼠标悬停时加深颜色 */
+}
+.dao_ {/*h2*/
+    display: block; 
+    background-color: #a10f05;
+    color: rgb(255, 255, 255); /* 设置文本颜色 */
+    height: 30px;
+    padding: 20px 0; /* 内边距 */
+    margin: 20px 0; /* 外边距，上下都留出空间 */
+    white-space: nowrap; /* 不允许文本换行 */
+    overflow: hidden; /* 隐藏超出部分 */
+    text-align: center; /* 文字居中 */
+    position: relative; /* 使伪元素相对于这个元素定位 */
+    padding-left: 4px; /* 左边距为 5px */
+    transition: transform 0.3s, background-color 0.3s; /* 平滑效果 */
+    cursor: pointer; /* 改变鼠标样式 */
+}
+.selected {
+    background-color: #da1b1b; /* 更明显的选中效果 */
+    color: white; /* 选中后的文字颜色 */
+    transform: scale(1.1); /* 略微放大 */
+    border: 2px solid #ffffff; /* 添加边框 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+    transition: transform 0.3s, background-color 0.3s, border 0s; /* 平滑过渡 */
+}
+
+.shell {/*框*/
+    position: fixed;
+    width: 42px;
+    height: 100%;
+    background: #b11206;
+    z-index: 9999;
+    transition: width 0.5s;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+    border-radius: 8px;
+}
+.shell:hover {
+    width: 350px;
+}
+
+.content {
+    margin-left: 35px; /* 初始左外边距 */
+    transition: margin-left 0.1s ease; /* 添加过渡效果 */
+}
+
+.xiao_dao_{
+    color: rgb(255, 255, 255); /* 设置文本颜色 */
+    text-align: center; /* 文字居中 */
+    white-space: nowrap; /* 不允许文本换行 */
+}

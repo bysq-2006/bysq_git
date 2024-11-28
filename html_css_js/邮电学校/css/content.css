@@ -1,0 +1,45 @@
+.student {
+    display: flex; /* 保留flex也可以考虑flex: 1;应当使用formatted code */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    background: linear-gradient(to right, #ffe1e1, #e0f7fa); /* 使用渐变背景 */
+    padding: 15px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.student img {
+    border-radius: 7%;
+    margin: 0 15px 15px 0; /* 右侧和下方的间距 */
+    float: left; /* 让图片浮动到左侧 */
+    width: 400px; /* 可以设置合适的宽度 */
+    height: auto; /* 保持宽高比 */
+}
+
+.info {
+    overflow: hidden; /* 清除浮动影响，确保可以包围浮动 */
+    background-color: rgba(255, 255, 255, 0);
+}
+.info h2 {
+    margin: 0 0 10px;
+    color: #2c3e50;
+}
+.info p {
+    margin: 5px 0;
+    color: #7f8c8d;
+}
+h1.cj {
+    background: #a80808;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}

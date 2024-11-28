@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "638406",
+      "name": "学校介绍",
+      "font_class": "01",
+      "unicode": "e69b",
+      "unicode_decimal": 59035
+    },
+    {
+      "icon_id": "6376286",
+      "name": "导航_导航栏_主页",
+      "font_class": "daohang_daohanglan_zhuye",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "8145827",
+      "name": "科技",
+      "font_class": "keji",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "16322954",
+      "name": "奖杯",
+      "font_class": "jiangbei",
+      "unicode": "e705",
+      "unicode_decimal": 59141
+    },
+    {
+      "icon_id": "32688113",
+      "name": "专业",
+      "font_class": "zhuanye",
+      "unicode": "e6d0",
+      "unicode_decimal": 59088
+    }
+  ]
+}

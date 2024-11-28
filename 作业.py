@@ -1,8 +1,12 @@
-num:int = int(input())
-i:int = 0
+def num_pd(number:int) -> bool:
+    sum:int = 0
+    for i in range(1,number,1):
+        if number % i == 0:
+            sum += i
+    if sum == number:
+        return True
+    else:
+        return False
 
-while num > 0:
-    num //= 10
-    i += 1
-
-print(i)
+num = eval(input())
+print(f"{num} is {num_pd(num)}")
