@@ -1,0 +1,19 @@
+import pymysql
+
+conn = pymysql.connect(
+    user='root',
+    passwd='root',
+    host='127.0.0.1',
+    database='bysq',
+    port=3306
+)
+
+home417 = conn.cursor()#必须先使用cursor() 游标之后才可以使用数据库操作
+
+home417.execute('select * from home417;')
+
+result = a.fetchall()
+print(result)
+
+a.close()
+conn.close()
