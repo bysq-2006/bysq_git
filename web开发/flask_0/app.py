@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 
 def pow(base:int, n:int = 2) -> int:
     sum:int = 1
@@ -19,18 +20,23 @@ password = "root"
 
 database = "bysq"
 
-app.config['SQLALCHEMY_DATEBASE_URI'] = f"mysql+pymysql://{username}:{password}@{homename}:{port}/{database}?charset=utf-8"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{username}:{password}@{homename}:{port}/{database}?charset=utf8"
 
 db = SQLAlchemy(app)
 
+class home417(db.Model):
+    __tablename__ = "user"
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    username = db.Column(db.String(100),nullable=False)
+    password = db.Column(db.String(100),nullable=False)
+
 with app.app_context():
-    with db.engine.connect() as conn:
-        rs = conn.execute("select 1")
-        print(rs.fetchone())
+    db.create_all()
 
 @app.route('/')
 def index():
-    return 666
+    database_list = []
+    return str(database_list)
 
 if __name__ == "__main__":
     app.run(debug=True,host="0.0.0.0",port=5000)
