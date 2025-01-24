@@ -3,7 +3,7 @@
 using namespace std;
 //
 
-// 14
+// complete
 
 //
 
@@ -99,7 +99,7 @@ void insertsort(int* nums, int size){//作者的算法是判断交换数字的�
     // cout << count << endl;
 }
 
-void partitionsort(int* nums,int start = 0,int end = 0){
+void partitionsort(int* nums,int start = 0,int end = 0){//分区排序，start和end为左闭右开区间，默认值为0和数组长度-1,size要减1
     if(end - start == 1){
         if(nums[start] > nums[end]) swap(nums[start],nums[end]);
     }
@@ -111,7 +111,22 @@ void partitionsort(int* nums,int start = 0,int end = 0){
         int size = end - start + 1;
         int* tempint = (int*)malloc(sizeof(int) * (size));
         int left = start,right = a + 1,i = 0;
-        while(i < size){
+        while(true){
+            if(left > a){
+                for(int j = right;j <= end;j++){
+                    tempint[i] = nums[j];
+                    i++;
+                }
+                break;
+            }
+            else if (right > end)
+            {
+                for(int j = left;j <= a;j++){
+                    tempint[i] = nums[j];
+                    i++;
+                }
+                break;
+            }
             if(nums[left] > nums[right]){
                 tempint[i] = nums[right];
                 right++;
@@ -122,13 +137,59 @@ void partitionsort(int* nums,int start = 0,int end = 0){
             }
             i++;
         }
+        int j = 0;
+        for(int i = start;i <= end;i++){
+            nums[i] = tempint[j];
+            j++;
+        }
     }
 }
 
+void qsort(int* nums,int start = 0,int end = 0){//快速排序，start和end为左闭右开区间，默认值为0和数组长度-1
+    if(end == start) return;
+    else if(end == start + 1){
+        if(nums[end] < nums[start]){
+            swap(&nums[start],&nums[end]);
+        }
+        return;
+    }
+    int centre = start + (end - start) / 2;//最终交换的结果应当是 左边最小 右边最大 中间为中间
+    if(nums[start] > nums[end])
+        swap(&nums[start],&nums[end]);
+    if(nums[start] > nums[centre])
+        swap(&nums[start], &nums[centre]);
+    if(nums[end] < nums[centre])
+        swap(&nums[end],&nums[centre]);
+    swap(&nums[centre],&nums[end - 1]);//之后应该以第二个元素为开头第一倒数第三个元素为结尾开始进行分割策略
+    int left = start + 1,right = end - 2;
+    while(true){
+        while(nums[left] < nums[end - 1] && left < right){
+            left++;
+        }
+        while(nums[right] > nums[end - 1] && left < right){
+            right--;
+        }
+        if(right <= left){
+            swap(&nums[end - 1],&nums[left]);
+            break;
+        }
+        else{
+            swap(&nums[left],&nums[right]);
+            right--;
+            left++;
+        }
+    }
+    qsort(nums,start,left - 1);
+    qsort(nums,left,end);
+}
+
+void quicksort(int *nums,int size){
+    qsort(nums, 0, size - 1);
+}
 int main(){
     int nums[9] = {7,8,1,9,6,54,1,0,2};
     int size = sizeof(nums) / sizeof(nums[0]);
-    partitionsort(nums,0,size - 1);
+    quicksort(nums,size);
     for(int i=0; i<size; i++){
         cout << nums[i] << " ";
     }

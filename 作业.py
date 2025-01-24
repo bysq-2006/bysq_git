@@ -1,51 +1,25 @@
-import random
-import matplotlib.pyplot as plt
-import matplotlib
+from moviepy.editor import VideoFileClip
 
-# 设置字体以显示中文
-matplotlib.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 设置无衬线字体
-matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号 '-' 显示为方块的问题
+def extract_frame(video_path, output_path, frame_number=0):
+    """
+    从视频中提取指定帧并保存为图片
 
-# 初始化统计数组
-# 均值的范围是1到60，差值的范围是0到59
-mean_counts = [0] * 60  # 均值从1到60
-diff_counts = [0] * 60  # 差值从0到59
-
-# 执行十万次随机取两个点
-for _ in range(100000):
-    a = random.randint(1, 60)
-    b = random.randint(1, 60)
-    while a == b:  # 确保两个点不同
-        b = random.randint(1, 60)
+    :param video_path: 视频文件路径
+    :param output_path: 输出图片路径
+    :param frame_number: 要提取的帧号，默认为0，即第一帧
+    """
+    # 加载视频文件
+    video = VideoFileClip(video_path)
     
-    # 计算均值和差值
-    mean = int((a + b) / 2)  # 均值取整
-    diff = abs(a - b)        # 差值
+    # 提取指定帧
+    frame = video.get_frame(frame_number)
     
-    # 统计均值和差值
-    mean_counts[mean - 1] += 1
-    diff_counts[diff] += 1
+    # 保存为图片
+    video.save_frame(output_path, t=frame_number / video.fps)
+    
+    print(f"帧已成功提取并保存到 {output_path}")
 
-# 绘制均值统计图
-plt.figure(figsize=(12, 6))
-
-# 均值统计图
-plt.subplot(1, 2, 1)
-plt.bar(range(1, 61), mean_counts, color='blue')
-plt.xlabel('均值 (1-60)')
-plt.ylabel('出现次数')
-plt.title('均值的出现次数')
-plt.xticks(range(1, 61, 5))  # 设置X轴的刻度，每5个标记一个
-plt.ylim(0, max(mean_counts) + 1000)  # 设置Y轴的范围，略大于最大次数
-
-# 差值统计图
-plt.subplot(1, 2, 2)
-plt.bar(range(0, 60), diff_counts, color='green')
-plt.xlabel('差值 (0-59)')
-plt.ylabel('出现次数')
-plt.title('差值的出现次数')
-plt.xticks(range(0, 60, 5))  # 设置X轴的刻度，每5个标记一个
-plt.ylim(0, max(diff_counts) + 1000)  # 设置Y轴的范围，略大于最大次数
-
-plt.tight_layout()  # 调整子图间距
-plt.show()
+# 示例使用
+video_path = r'D:\bysq\mmexport1579195022764.mp4'
+output_path = r'D:\bysq\linlin.png'
+extract_frame(video_path, output_path)
